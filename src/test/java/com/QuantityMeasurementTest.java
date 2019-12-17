@@ -25,4 +25,18 @@ public class QuantityMeasurementTest {
         boolean result = feet1.equals(null);
         Assert.assertFalse(false);
     }
+
+    @Test
+    public void given0InchesAnd0InchesIfEqual_ShouldReturnTrue() {
+        Inches inche1 = new Inches(0.0);
+        Inches inche2 = new Inches(0.0);
+        Assert.assertEquals(inche1, inche2);
+    }
+
+    @Test
+    public void givenDifferentInchValues_ShouldReturnFalse() {
+        Inches inch1 = new Inches(0.0);
+        Inches inch2 = new Inches(1.0);
+        Assert.assertNotEquals(inch1, inch2);
+    }
 }
