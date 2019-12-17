@@ -1,5 +1,6 @@
 package com;
 
+import com.sun.source.tree.AssertTree;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -71,6 +72,10 @@ public class QuantityMeasurementTest {
     }
 
     @Test
-    public void name() {
+    public void given1InchAnd1InhIfEquals_Should_ReturnTrue() {
+        Length inch1 = new Length(Length.Unit.INCH, 1.0);
+        Length inch2 = new Length(Length.Unit.INCH, 1.0);
+        boolean result = inch1.compareCheck(inch2);
+        Assert.assertTrue(result);
     }
 }
