@@ -1,7 +1,7 @@
 package com;
 
 public class Length {
-    private static final double FEET_TO_INCH = 0;
+    private static final double FEET_TO_INCH = 12;
 
     enum Unit {FEET, INCH;}
 
