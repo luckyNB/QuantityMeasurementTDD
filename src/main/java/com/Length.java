@@ -1,14 +1,12 @@
 package com;
 
-import java.util.Objects;
-
 public class Length {
+    private static final double FEET_TO_INCH = 0;
+
+    enum Unit {FEET, INCH;}
+
     private final double value;
     private  Unit unit;
-
-    enum Unit{
-    FEET,INCH;
-}
 
     @Override
     public boolean equals(Object o) {
@@ -19,13 +17,16 @@ public class Length {
                 unit == length.unit;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, unit);
-    }
-
     public Length(Unit unit, double value) {
         this.value = value;
         this.unit = unit;
+    }
+
+    public boolean compareCheck(Length that) {
+        if (this.unit.equals(Unit.FEET) && that.unit.equals(Unit.FEET))
+            return Double.compare(this.value, that.value) == 0;
+        if (this.unit.equals(Unit.FEET) && that.unit.equals(Unit.INCH))
+            return Double.compare(this.value*FEET_TO_INCH, that.value) == 0;
+        return false;
     }
 }
