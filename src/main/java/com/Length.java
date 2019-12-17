@@ -1,12 +1,9 @@
 package com;
 
 public class Length {
-    private static final double FEET_TO_INCH = 12;
-
-    enum Unit {FEET, INCH, YARD;}
 
     private final double value;
-    private  Unit unit;
+    public Conversion.ConversionOfUnits unit;
 
     @Override
     public boolean equals(Object o) {
@@ -17,20 +14,15 @@ public class Length {
                 unit == length.unit;
     }
 
-    public Length(Unit unit, double value) {
+    public Length(Conversion.ConversionOfUnits unit, double value) {
         this.value = value;
         this.unit = unit;
     }
 
     public boolean compareCheck(Length that) {
-        if (this.unit.equals(Unit.FEET) && that.unit.equals(Unit.FEET))
-            return Double.compare(this.value, that.value) == 0;
-        if (this.unit.equals(Unit.INCH) && that.unit.equals(Unit.INCH))
-            return Double.compare(this.value, that.value) == 0;
-        if (this.unit.equals(Unit.FEET) && that.unit.equals(Unit.INCH))
-            return Double.compare(this.value*FEET_TO_INCH, that.value) == 0;
-        if (this.unit.equals(Unit.INCH) && that.unit.equals(Unit.FEET))
-            return Double.compare(this.value/FEET_TO_INCH, that.value) == 0;
-        return false;
+            Double firstValue = this.unit.convertToInches(this.value);
+            Double secondValue = that.unit.convertToInches(that.value);
+            return firstValue.equals(secondValue);
     }
+
 }
