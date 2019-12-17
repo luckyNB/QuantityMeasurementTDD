@@ -111,10 +111,17 @@ public class QuantityMeasurementTest {
     }
 
     @Test
-    public void given12FeetAnd1Inch_ShouldReturnFalse() {
-        Length inches = new Length(Length.Unit.INCH, 1.0);
-        Length feet = new Length(Length.Unit.FEET, 12.0);
+    public void given3FeetAnd12Inch_ShouldReturnFalse() {
+        Length inches = new Length(Length.Unit.INCH, 12.0);
+        Length feet = new Length(Length.Unit.YARD,3.0);
         boolean compareCheck = inches.compareCheck(feet);
         Assert.assertFalse(compareCheck);
+    }
+
+    @Test
+    public void given0YardAnd0YardIfEquals_ShouldReturnTrue() {
+        Length yard1 = new Length(Length.Unit.YARD, 0.0);
+        Length yard2 = new Length(Length.Unit.YARD, 0.0);
+        Assert.assertEquals(yard1, yard2);
     }
 }
