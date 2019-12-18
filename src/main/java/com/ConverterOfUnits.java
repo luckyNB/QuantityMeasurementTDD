@@ -20,9 +20,9 @@ public class ConverterOfUnits {
     }
 
     public boolean compareCheck(ConverterOfUnits that) {
-            Double firstValue = this.unit.convertToInches(this.value);
-            Double secondValue = that.unit.convertToInches(that.value);
-            return firstValue.equals(secondValue);
+        Double firstValue = this.unit.convertToInches(this.value);
+        Double secondValue = that.unit.convertToInches(that.value);
+        return firstValue.equals(secondValue);
     }
 
     public double additionOfUnits(ConverterOfUnits that) {
