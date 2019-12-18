@@ -204,4 +204,13 @@ public class QuantityMeasurementTest {
         double result = inch1.additionOfUnits(inch2);
         Assert.assertEquals(4,result,0.0);
     }
+
+    @Test
+    public void given1feetAnd2inches_ShouldReturnAddition14inches() {
+        ConverterOfUnits feet = new ConverterOfUnits(TypeOfUnits.ConvertUnit.FEET, 1);
+        ConverterOfUnits inch = new ConverterOfUnits(TypeOfUnits.ConvertUnit.INCHES, 2);
+        double result = feet.additionOfUnits(inch);
+        Assert.assertEquals(14, result, 0.0);
+    }
+
 }
