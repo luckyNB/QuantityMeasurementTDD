@@ -24,5 +24,4 @@ public class Length {
             Double secondValue = that.unit.convertToInches(that.value);
             return firstValue.equals(secondValue);
     }
-
 }

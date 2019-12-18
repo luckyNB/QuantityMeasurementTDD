@@ -13,7 +13,7 @@ public class QuantityMeasurementTest {
     }
 
     @Test
-    public void given0feetAnd1inchValues_ShouldReturnFalse() {
+    public void given0feetAnd1FeetValues_ShouldReturnFalse() {
         Length feet1 = new Length(Conversion.ConversionOfUnits.FEET,0.0);
         Length feet2 = new Length(Conversion.ConversionOfUnits.FEET,1.0);
         Assert.assertNotEquals(feet1, feet2);
@@ -25,6 +25,7 @@ public class QuantityMeasurementTest {
         feet1.equals(null);
         Assert.assertFalse(false);
     }
+
     @Test
     public void given0InchAnd0InchIfEqual_ShouldReturnTrue() {
         Length inch1 = new Length(Conversion.ConversionOfUnits.INCHES,0.0);
@@ -104,7 +105,7 @@ public class QuantityMeasurementTest {
 
     @Test
     public void given12InchesAnd1Feet_ShouldReturnTrue() {
-        Length inches = new Length(Conversion.ConversionOfUnits.INCHES, 12.0);
+        Length inches = new Length(Conversion.ConversionOfUnits.INCHES,12);
         Length feet = new Length(Conversion.ConversionOfUnits.FEET, 1.0);
         boolean compareCheck = inches.compareCheck(feet);
         Assert.assertTrue(compareCheck);
@@ -118,4 +119,25 @@ public class QuantityMeasurementTest {
         Assert.assertFalse(compareCheck);
     }
 
+    @Test
+    public void given0YardAnd0Yard_ShouldReturnTrue() {
+        Length yard1 = new Length(Conversion.ConversionOfUnits.YARD, 0.0);
+        Length yard2 = new Length(Conversion.ConversionOfUnits.YARD, 0.0);
+        Assert.assertEquals(yard1,yard2);
+
+    }
+
+    @Test
+    public void given0yardAnd1yardValues_ShouldReturnFalse() {
+        Length yard1 = new Length(Conversion.ConversionOfUnits.YARD,0.0);
+        Length yard2 = new Length(Conversion.ConversionOfUnits.YARD,1.0);
+        Assert.assertNotEquals(yard1, yard2);
+    }
+
+    @Test
+    public void givenOneNUllValueForYardUnitShouldReturnFalse() {
+        Length yard1 = new Length(Conversion.ConversionOfUnits.YARD,3.0);
+        yard1.equals(null);
+        Assert.assertFalse(false);
+    }
 }
