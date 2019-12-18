@@ -159,10 +159,18 @@ public class QuantityMeasurementTest {
 
     @Test
     public void given1inchAnd1yard_ShouldReturnFalse() {
-        Length feet = new Length(Conversion.ConversionOfUnits.INCHES, 1);
+        Length inches = new Length(Conversion.ConversionOfUnits.INCHES, 1);
         Length yard = new Length(Conversion.ConversionOfUnits.YARD, 1);
-        boolean compareCheck = feet.compareCheck(yard);
+        boolean compareCheck = inches.compareCheck(yard);
         Assert.assertFalse(compareCheck);
+    }
+
+    @Test
+    public void given1yardAnd36inch_ShouldReturnTrue() {
+        Length yard = new Length(Conversion.ConversionOfUnits.YARD, 1);
+        Length inches = new Length(Conversion.ConversionOfUnits.INCHES, 36);
+        boolean compareCheck = yard.compareCheck(inches);
+        Assert.assertTrue(compareCheck);
     }
 
 }
