@@ -3,7 +3,7 @@ package com;
 public class ConverterOfUnits {
 
     private double value = 0;
-    public TypeOfUnits.ConvertUnit unit;
+    public ConvertUnits.ConvertUnit unit;
 
     @Override
     public boolean equals(Object o) {
@@ -14,20 +14,23 @@ public class ConverterOfUnits {
                 unit == length.unit;
     }
 
-    public ConverterOfUnits(TypeOfUnits.ConvertUnit unit, double value) {
+    public ConverterOfUnits(ConvertUnits.ConvertUnit unit, double value) {
         this.value = value;
         this.unit = unit;
     }
 
     public boolean compareCheck(ConverterOfUnits that) {
-        Double firstValue = this.unit.convertToInches(this.value);
-        Double secondValue = that.unit.convertToInches(that.value);
-        return firstValue.equals(secondValue);
+        if (this.unit.thisType.equals(that.unit.thisType) ){
+            Double firstValue = this.unit.convertToDifferentValues(this.value);
+            Double secondValue = that.unit.convertToDifferentValues(that.value);
+            return firstValue.equals(secondValue);
+        }
+        return false;
     }
 
     public double additionOfUnits(ConverterOfUnits that) {
-        Double firstValue = this.unit.convertToInches(this.value);
-        Double secondValue = that.unit.convertToInches(that.value);
+        Double firstValue = this.unit.convertToDifferentValues(this.value);
+        Double secondValue = that.unit.convertToDifferentValues(that.value);
         return firstValue+secondValue;
     }
 
