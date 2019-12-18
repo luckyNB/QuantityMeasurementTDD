@@ -213,4 +213,13 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(14, result, 0.0);
     }
 
+    @Test
+    public void given1feetAnd1feet_ShouldReturnAddition24inches() {
+        ConverterOfUnits feet1 = new ConverterOfUnits(TypeOfUnits.ConvertUnit.FEET, 1);
+        ConverterOfUnits feet2 = new ConverterOfUnits(TypeOfUnits.ConvertUnit.FEET, 1);
+        double result = feet1.additionOfUnits(feet2);
+        Assert.assertEquals(24, result, 0.0);
+    }
+
+
 }
