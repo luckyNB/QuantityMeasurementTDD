@@ -196,4 +196,12 @@ public class QuantityMeasurementTest {
         boolean compareCheck = inch.compareCheck(cm);
         Assert.assertTrue(compareCheck);
     }
+
+    @Test
+    public void given2inchesAnd2inches_ShouldReturnAddition4inches() {
+        ConverterOfUnits inch1 = new ConverterOfUnits(TypeOfUnits.ConvertUnit.INCHES, 2);
+        ConverterOfUnits inch2 = new ConverterOfUnits(TypeOfUnits.ConvertUnit.INCHES, 2);
+        double result = inch1.additionOfUnits(inch2);
+        Assert.assertEquals(4,result,0.0);
+    }
 }

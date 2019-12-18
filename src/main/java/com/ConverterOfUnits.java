@@ -2,7 +2,7 @@ package com;
 
 public class ConverterOfUnits {
 
-    private final double value;
+    private double value = 0;
     public TypeOfUnits.ConvertUnit unit;
 
     @Override
@@ -23,6 +23,12 @@ public class ConverterOfUnits {
             Double firstValue = this.unit.convertToInches(this.value);
             Double secondValue = that.unit.convertToInches(that.value);
             return firstValue.equals(secondValue);
+    }
+
+    public double additionOfUnits(ConverterOfUnits that) {
+        Double firstValue = this.unit.convertToInches(this.value);
+        Double secondValue = that.unit.convertToInches(that.value);
+        return firstValue+secondValue;
     }
 
 }
