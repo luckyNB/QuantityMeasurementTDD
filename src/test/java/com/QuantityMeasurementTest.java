@@ -221,5 +221,12 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(24, result, 0.0);
     }
 
+    @Test
+    public void given2inchAnd2dot5cm_ShouldReturnAddition3inches() {
+        ConverterOfUnits inch = new ConverterOfUnits(TypeOfUnits.ConvertUnit.INCHES, 2);
+        ConverterOfUnits cm = new ConverterOfUnits(TypeOfUnits.ConvertUnit.CM, 2.5);
+        double result = inch.additionOfUnits(cm);
+        Assert.assertEquals(3, result, 0.0);
+    }
 
 }
