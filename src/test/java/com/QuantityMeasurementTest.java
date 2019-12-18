@@ -235,4 +235,12 @@ public class QuantityMeasurementTest {
         boolean result = gallon.compareCheck(litre);
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void givenTwoDifferentUnitTypes_ShouldNotPerformComparision() {
+        ConverterOfUnits gallon = new ConverterOfUnits(ConvertUnits.ConvertUnit.GALLONS, 1);
+        ConverterOfUnits feet = new ConverterOfUnits(ConvertUnits.ConvertUnit.FEET, 1);
+        boolean result = gallon.compareCheck(feet);
+        Assert.assertFalse(result);
+    }
 }
