@@ -287,4 +287,21 @@ public class QuantityMeasurementTest {
         boolean compareCheck = UnitConverter.ConvertUnit.compare(tonne,kgs);
         Assert.assertFalse(compareCheck);
     }
+
+    @Test
+    public void given1tonneAnd10lakhsgramsIfEqual_ShouldReturnTrue() {
+        EqualityChecker tonne = new EqualityChecker(UnitConverter.ConvertUnit.TONNE, 1);
+        EqualityChecker grams = new EqualityChecker(UnitConverter.ConvertUnit.GRAMS, 1000000);
+        boolean compareCheck = UnitConverter.ConvertUnit.compare(tonne, grams);
+        Assert.assertTrue(compareCheck);
+    }
+    @Test
+    public void given1tonneAnd1gramsIfNotEqual_ShouldReturnFalse() {
+        EqualityChecker tonne = new EqualityChecker(UnitConverter.ConvertUnit.TONNE, 1);
+        EqualityChecker grams = new EqualityChecker(UnitConverter.ConvertUnit.GRAMS, 1);
+        boolean compareCheck = UnitConverter.ConvertUnit.compare(tonne, grams);
+        Assert.assertFalse(compareCheck);
+    }
+
+
 }
