@@ -243,4 +243,13 @@ public class QuantityMeasurementTest {
         boolean result = UnitConverter.ConvertUnit.compare(gallon,feet);
         Assert.assertFalse(result);
     }
+
+    @Test
+    public void given1gallonAnd3dot78litres_ShouldReturnAddition7dot57litres() {
+        EqualityChecker gallon = new EqualityChecker(UnitConverter.ConvertUnit.GALLONS, 1);
+        EqualityChecker litres = new EqualityChecker(UnitConverter.ConvertUnit.LITRE, 3.78);
+        double result = UnitConverter.ConvertUnit.addition(gallon, litres);
+        Assert.assertEquals(Math.round(7.57), result, 0.0);
+    }
+
 }
