@@ -336,4 +336,11 @@ public class EqualityCheckerTest {
         Assert.assertEquals(1001000, addition, 0.0);
     }
 
+    @Test
+    public void given212FahrenheitAnd100CelsiusIfEquals_ShouldReturnTrue() {
+        double celsiusValue = EqualityChecker.convertingFahrenheitToCelsius(42);
+        Assert.assertEquals(5.555555555555555, celsiusValue, 0.0);
+    }
+
+
 }

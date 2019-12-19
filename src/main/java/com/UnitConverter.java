@@ -13,9 +13,8 @@ public enum ConvertUnit {
     KG(1000,TypeOfUnits.WEIGHT),
     TONNE(1000000, TypeOfUnits.WEIGHT);
 
-
-    public final TypeOfUnits typeOfUnits;
-    public final double baseUnit;
+    public TypeOfUnits typeOfUnits;
+    public double baseUnit;
 
     ConvertUnit(double baseUnit, TypeOfUnits typeOfUnits) {
         this.baseUnit = baseUnit;

@@ -36,4 +36,8 @@ public class EqualityChecker {
         }
         return 0;
     }
+
+    public static double convertingFahrenheitToCelsius(double fahrenheit) {
+        return ((fahrenheit - 32) * 5 / 9);
+    }
 }
