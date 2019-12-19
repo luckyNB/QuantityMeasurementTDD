@@ -11,7 +11,8 @@ public enum ConvertUnit {
     LITRE(1.00, TypeOfUnits.VOLUME),
     GRAMS(1.00, TypeOfUnits.WEIGHT),
     KG(1000,TypeOfUnits.WEIGHT),
-    TONNE(1000000, TypeOfUnits.WEIGHT);
+    TONNE(1000000, TypeOfUnits.WEIGHT),
+    CELSIUS,FAHRENHEIT;
 
     public TypeOfUnits typeOfUnits;
     public double baseUnit;
@@ -19,6 +20,9 @@ public enum ConvertUnit {
     ConvertUnit(double baseUnit, TypeOfUnits typeOfUnits) {
         this.baseUnit = baseUnit;
         this.typeOfUnits = typeOfUnits;
+    }
+
+    ConvertUnit() {
     }
 }
 }
