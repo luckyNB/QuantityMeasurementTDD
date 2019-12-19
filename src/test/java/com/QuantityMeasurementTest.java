@@ -311,4 +311,28 @@ public class QuantityMeasurementTest {
         double addition = UnitConverter.ConvertUnit.addition(tonne, grams) / 1000;
         Assert.assertEquals(1001, addition,0.0);
     }
+
+    @Test
+    public void given2gAnd2g_WhenAdded_ShouldReturn4grams() {
+        EqualityChecker grams1 = new EqualityChecker(UnitConverter.ConvertUnit.GRAMS, 2);
+        EqualityChecker grams2 = new EqualityChecker(UnitConverter.ConvertUnit.GRAMS, 2);
+        double addition = UnitConverter.ConvertUnit.addition(grams1, grams2);
+        Assert.assertEquals(4, addition, 0.0);
+    }
+
+    @Test
+    public void given1kgAnd2g_WhenAdded_ShouldReturn1002grams() {
+        EqualityChecker kg1 = new EqualityChecker(UnitConverter.ConvertUnit.KG, 1);
+        EqualityChecker kg2 = new EqualityChecker(UnitConverter.ConvertUnit.GRAMS, 2);
+        double addition = UnitConverter.ConvertUnit.addition(kg1, kg2);
+        Assert.assertEquals(1002, addition, 0.0);
+    }
+
+    @Test
+    public void given1kgAnd1tonne_WhenAdded_ShouldReturn1001000grams() {
+        EqualityChecker kg = new EqualityChecker(UnitConverter.ConvertUnit.KG, 1);
+        EqualityChecker tonne = new EqualityChecker(UnitConverter.ConvertUnit.TONNE, 1);
+        double addition = UnitConverter.ConvertUnit.addition(kg, tonne);
+        Assert.assertEquals(1001000, addition, 0.0);
+    }
 }
