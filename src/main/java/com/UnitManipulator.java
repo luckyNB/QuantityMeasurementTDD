@@ -19,17 +19,20 @@ public class UnitManipulator {
         this.unit = unit;
     }
 
-    public static boolean compare(UnitManipulator input1, UnitManipulator input2) {
+    public static boolean compare(UnitManipulator input1, UnitManipulator input2) throws UnitManipulatorException {
+
         if (input1.unit.typeOfUnits.equals(input2.unit.typeOfUnits)) {
-            Double firstValue = Double.valueOf((Math.round(input1.value*input1.unit.baseUnit)));
-            Double secondValue = Double.valueOf(Math.round(input2.value*input2.unit.baseUnit));
+            Double firstValue = Double.valueOf((Math.round(input1.value * input1.unit.baseUnit)));
+            Double secondValue = Double.valueOf(Math.round(input2.value * input2.unit.baseUnit));
             return firstValue.equals(secondValue);
         }
-        return false;
+        throw new UnitManipulatorException("invalid unit type", UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE);
+
     }
 
+
     public static double addition(UnitManipulator input1, UnitManipulator input2) {
-        if (input1.unit.typeOfUnits.equals(input2.unit.typeOfUnits)) {
+        if (input1.unit.typeOfUnits.equals(input2.unit.typeOfUnits) && input1.unit.typeOfUnits != TypeOfUnits.TEMPERATURE)  {
             Double firstValue = input1.value*input1.unit.baseUnit;
             Double secondValue = input2.value*input2.unit.baseUnit;
             return Math.round(firstValue+secondValue);

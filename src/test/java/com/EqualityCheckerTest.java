@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class EqualityCheckerTest {
+
     @Test
     public void given0feetAnd0feetIfEqual_ShouldReturnTrue() {
         UnitManipulator feet1 = new UnitManipulator(UnitConverter.ConvertUnit.FEET,0.0);
@@ -47,75 +48,120 @@ public class EqualityCheckerTest {
     }
 
     @Test
-    public void given0InchAnd0Feet_ShouldReturnEqual() {
-        UnitManipulator feet1 = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 0.0);
-        UnitManipulator inches1 = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 0.0);
-        boolean check = UnitManipulator.compare(feet1,inches1);
-        Assert.assertTrue(check);
+    public void given0InchAnd0Feet_ShouldReturnEqual()  {
+        try {
+            UnitManipulator feet1 = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 0.0);
+            UnitManipulator inches1 = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 0.0);
+            boolean check = UnitManipulator.compare(feet1,inches1);
+            Assert.assertTrue(check);
+        } catch (UnitManipulatorException e) {
+            e.printStackTrace();
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1InchAnd1Feet_ShouldReturnNotEqual() {
-        UnitManipulator feet1 = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
-        UnitManipulator inches1 = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
-        boolean check = UnitManipulator.compare(feet1,inches1);
-        Assert.assertFalse(check);
+        boolean check = false;
+        try {
+            UnitManipulator feet1 = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
+            UnitManipulator inches1 = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1.0);
+            check = UnitManipulator.compare(feet1,inches1);
+            Assert.assertFalse(check);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1FeetAnd1FeetIfEqual_ShouldReturnTrue() {
-        UnitManipulator feet1 = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
-        UnitManipulator feet2 = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
-        boolean result = UnitManipulator.compare(feet1,feet2);
-        Assert.assertTrue(result);
+        boolean result = false;
+        try {
+            UnitManipulator feet1 = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
+            UnitManipulator feet2 = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
+            result = UnitManipulator.compare(feet1,feet2);
+            Assert.assertTrue(result);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1InchAnd1InhIfEquals_Should_ReturnTrue() {
-        UnitManipulator inch1 = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
-        UnitManipulator inch2 = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
-        boolean result = UnitManipulator.compare(inch1,inch2);
-        Assert.assertTrue(result);
+        boolean result = false;
+        try {
+            UnitManipulator inch1 = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
+            UnitManipulator inch2 = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
+            result = UnitManipulator.compare(inch1,inch2);
+            Assert.assertTrue(result);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1feetAnd1inchIfNotEqual_ShouldReturnFalse() {
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
-        UnitManipulator inch = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
-        boolean compareCheck = UnitManipulator.compare(feet,inch);
-        Assert.assertFalse(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
+            UnitManipulator inch = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
+            compareCheck = UnitManipulator.compare(feet,inch);
+            Assert.assertFalse(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1InchAnd1FeetIfNotEqual_ShouldReturnFalse() {
-        UnitManipulator inch = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
-        boolean compareCheck = UnitManipulator.compare(inch,feet);
-        Assert.assertFalse(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator inch = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1.0);
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
+            compareCheck = UnitManipulator.compare(inch,feet);
+            Assert.assertFalse(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1feetAnd12inches_ShouldReturnTrue() {
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
-        UnitManipulator inch = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 12.0);
-        boolean compareCheck = UnitManipulator.compare(feet,inch);;
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
+            UnitManipulator inch = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 12.0);
+            compareCheck = UnitManipulator.compare(feet,inch);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given12InchesAnd1Feet_ShouldReturnTrue() {
-        UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES,12);
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
-        boolean compareCheck = UnitManipulator.compare(inches,feet);;
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES,12);
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1.0);
+            compareCheck = UnitManipulator.compare(inches,feet);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given3FeetAnd12Inch_ShouldReturnFalse() {
-        UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 12.0);
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET,3.0);
-        boolean compareCheck = UnitManipulator.compare(inches,feet);;
-        Assert.assertFalse(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 12.0);
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET,3.0);
+            compareCheck = UnitManipulator.compare(inches,feet);
+            Assert.assertFalse(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
@@ -142,58 +188,93 @@ public class EqualityCheckerTest {
 
     @Test
     public void given3feetAnd1yard_ShouldReturnTrue() {
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 3);
-        UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
-        boolean compareCheck = UnitManipulator.compare(feet,yard);;
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 3);
+            UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
+            compareCheck = UnitManipulator.compare(feet,yard);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1feetAnd1yard_ShouldReturnFalse() {
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1);
-        UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
-        boolean compareCheck = UnitManipulator.compare(feet,yard);
-        Assert.assertFalse(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1);
+            UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
+            compareCheck = UnitManipulator.compare(feet,yard);
+            Assert.assertFalse(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1inchAnd1yard_ShouldReturnFalse() {
-        UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1);
-        UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
-        boolean compareCheck = UnitManipulator.compare(inches,yard);
-        Assert.assertFalse(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 1);
+            UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
+            compareCheck = UnitManipulator.compare(inches,yard);
+            Assert.assertFalse(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1yardAnd36inch_ShouldReturnTrue() {
-        UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
-        UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 36);
-        boolean compareCheck = UnitManipulator.compare(yard,inches);;
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
+            UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 36);
+            compareCheck = UnitManipulator.compare(yard,inches);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given36inchAnd1yard_ShouldReturnTrue() {
-        UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 36);
-        UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
-        boolean compareCheck = UnitManipulator.compare(inches,yard);;
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator inches = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 36);
+            UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1);
+            compareCheck = UnitManipulator.compare(inches,yard);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1yardAnd3feet_ShouldReturnTrue() {
-        UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 3);
-        boolean compareCheck = UnitManipulator.compare(yard,feet);
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator yard = new UnitManipulator(UnitConverter.ConvertUnit.YARD, 1);
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 3);
+            compareCheck = UnitManipulator.compare(yard,feet);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given2inchAnd5cm_ShouldReturnTrue() {
-        UnitManipulator inch = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 2);
-        UnitManipulator cm = new UnitManipulator(UnitConverter.ConvertUnit.CM,5);
-        boolean compareCheck = UnitManipulator.compare(inch,cm);
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator inch = new UnitManipulator(UnitConverter.ConvertUnit.INCHES, 2);
+            UnitManipulator cm = new UnitManipulator(UnitConverter.ConvertUnit.CM,5);
+            compareCheck = UnitManipulator.compare(inch,cm);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
@@ -228,22 +309,43 @@ public class EqualityCheckerTest {
         Assert.assertEquals(3, result, 0.0);
     }
 
-    //******************Volume****************//
+    @Test
+    public void givenTWoDifferentUnits_ShouldThrowException() {
+        boolean compareCheck = false;
+        try {
+            UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
+            UnitManipulator kgs = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1000);
+            compareCheck = UnitManipulator.compare(tonne,kgs);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
+    }
 
     @Test
     public void given1gallonAnd3dot78litres_ShouldReturnTrue() {
-        UnitManipulator gallon = new UnitManipulator(UnitConverter.ConvertUnit.GALLONS, 1);
-        UnitManipulator litre = new UnitManipulator(UnitConverter.ConvertUnit.LITRE, 3.78);
-        boolean result = UnitManipulator.compare(gallon,litre);
-        Assert.assertTrue(result);
+        boolean result = false;
+        try {
+            UnitManipulator gallon = new UnitManipulator(UnitConverter.ConvertUnit.GALLONS, 1);
+            UnitManipulator litre = new UnitManipulator(UnitConverter.ConvertUnit.LITRE, 3.78);
+            result = UnitManipulator.compare(gallon,litre);
+            Assert.assertTrue(result);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void givenTwoDifferentUnitTypes_ShouldNotPerformComparision() {
-        UnitManipulator gallon = new UnitManipulator(UnitConverter.ConvertUnit.GALLONS, 1);
-        UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1);
-        boolean result = UnitManipulator.compare(gallon,feet);
-        Assert.assertFalse(result);
+        boolean result = false;
+        try {
+            UnitManipulator gallon = new UnitManipulator(UnitConverter.ConvertUnit.GALLONS, 1);
+            UnitManipulator feet = new UnitManipulator(UnitConverter.ConvertUnit.FEET, 1);
+            result = UnitManipulator.compare(gallon,feet);
+            Assert.assertFalse(result);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
@@ -254,54 +356,82 @@ public class EqualityCheckerTest {
         Assert.assertEquals(Math.round(7.57), result, 0.0);
     }
 
-    //**************weight*******************//
-
     @Test
     public void given1kgAnd1000gmIfEqual_ShouldReturnTrue() {
-        UnitManipulator kg = new UnitManipulator(UnitConverter.ConvertUnit.KG, 1);
-        UnitManipulator gm = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1000);
-        boolean compareCheck = UnitManipulator.compare(kg, gm);
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator kg = new UnitManipulator(UnitConverter.ConvertUnit.KG, 1);
+            UnitManipulator gm = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1000);
+            compareCheck = UnitManipulator.compare(kg, gm);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1gAnd1kgIfNotEqual_ShouldReturnFalse() {
-        UnitManipulator kg = new UnitManipulator(UnitConverter.ConvertUnit.KG, 1);
-        UnitManipulator gm = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1);
-        boolean compareCheck = UnitManipulator.compare(kg, gm);
-        Assert.assertFalse(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator kg = new UnitManipulator(UnitConverter.ConvertUnit.KG, 1);
+            UnitManipulator gm = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1);
+            compareCheck = UnitManipulator.compare(kg, gm);
+            Assert.assertFalse(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1tonneAnd1000kgsIfEqual_ShouldReturnTrue() {
-        UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
-        UnitManipulator kgs = new UnitManipulator(UnitConverter.ConvertUnit.KG, 1000);
-        boolean compareCheck = UnitManipulator.compare(tonne,kgs);
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
+            UnitManipulator kgs = new UnitManipulator(UnitConverter.ConvertUnit.KG, 1000);
+            compareCheck = UnitManipulator.compare(tonne,kgs);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1tonneAnd1kgIfNotEqual_ShouldReturnFalse() {
-        UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
-        UnitManipulator kgs = new UnitManipulator(UnitConverter.ConvertUnit.KG, 1);
-        boolean compareCheck = UnitManipulator.compare(tonne,kgs);
-        Assert.assertFalse(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
+            UnitManipulator kgs = new UnitManipulator(UnitConverter.ConvertUnit.KG, 1);
+            compareCheck = UnitManipulator.compare(tonne,kgs);
+            Assert.assertFalse(compareCheck);
+        } catch (UnitManipulatorException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void given1tonneAnd10lakhsgramsIfEqual_ShouldReturnTrue() {
-        UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
-        UnitManipulator grams = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1000000);
-        boolean compareCheck = UnitManipulator.compare(tonne, grams);
-        Assert.assertTrue(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
+            UnitManipulator grams = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1000000);
+            compareCheck = UnitManipulator.compare(tonne, grams);
+            Assert.assertTrue(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
     public void given1tonneAnd1gramsIfNotEqual_ShouldReturnFalse() {
-        UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
-        UnitManipulator grams = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1);
-        boolean compareCheck = UnitManipulator.compare(tonne, grams);
-        Assert.assertFalse(compareCheck);
+        boolean compareCheck = false;
+        try {
+            UnitManipulator tonne = new UnitManipulator(UnitConverter.ConvertUnit.TONNE, 1);
+            UnitManipulator grams = new UnitManipulator(UnitConverter.ConvertUnit.GRAMS, 1);
+            compareCheck = UnitManipulator.compare(tonne, grams);
+            Assert.assertFalse(compareCheck);
+        } catch (UnitManipulatorException e) {
+            Assert.assertEquals(UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE, e.type);
+        }
     }
 
     @Test
@@ -335,8 +465,6 @@ public class EqualityCheckerTest {
         double addition = UnitManipulator.addition(kg, tonne);
         Assert.assertEquals(1001000, addition, 0.0);
     }
-
-    //********temperature*********
 
     @Test
     public void given212FahrenheitAnd100celsius_ShouldReturnTrue() {
