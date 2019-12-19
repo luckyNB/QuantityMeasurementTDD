@@ -271,4 +271,20 @@ public class QuantityMeasurementTest {
         boolean compareCheck = UnitConverter.ConvertUnit.compare(kg, gm);
         Assert.assertFalse(compareCheck);
     }
+
+    @Test
+    public void given1tonneAnd1000kgsIfEqual_ShouldReturnTrue() {
+        EqualityChecker tonne = new EqualityChecker(UnitConverter.ConvertUnit.TONNE, 1);
+        EqualityChecker kgs = new EqualityChecker(UnitConverter.ConvertUnit.KG, 1000);
+        boolean compareCheck = UnitConverter.ConvertUnit.compare(tonne,kgs);
+        Assert.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void given1tonneAnd1kgIfNotEqual_ShouldReturnFalse() {
+        EqualityChecker tonne = new EqualityChecker(UnitConverter.ConvertUnit.TONNE, 1);
+        EqualityChecker kgs = new EqualityChecker(UnitConverter.ConvertUnit.KG, 1);
+        boolean compareCheck = UnitConverter.ConvertUnit.compare(tonne,kgs);
+        Assert.assertFalse(compareCheck);
+    }
 }
