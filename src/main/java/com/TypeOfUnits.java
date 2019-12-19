@@ -1,5 +1,5 @@
 package com;
 
 public enum TypeOfUnits {
-    VOLUME, LENGTH
+    VOLUME, LENGTH, WEIGHT
 }

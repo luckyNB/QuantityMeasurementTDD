@@ -7,7 +7,10 @@ public enum ConvertUnit {
     YARD(36.0,TypeOfUnits.LENGTH),
     CM(0.394,TypeOfUnits.LENGTH),
     GALLONS(3.78,TypeOfUnits.VOLUME),
-    LITRE(1.00,TypeOfUnits.VOLUME);
+    LITRE(1.00, TypeOfUnits.VOLUME),
+    GRAMS(1.00, TypeOfUnits.WEIGHT),
+    KG(1000,TypeOfUnits.WEIGHT),
+    TONNE(1000, TypeOfUnits.WEIGHT);
 
     private final TypeOfUnits typeOfUnits;
     private final double baseUnit;

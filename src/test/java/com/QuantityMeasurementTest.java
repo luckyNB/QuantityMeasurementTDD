@@ -228,6 +228,8 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(3, result, 0.0);
     }
 
+    //******************Volume****************//
+
     @Test
     public void given1gallonAnd3dot78litres_ShouldReturnTrue() {
         EqualityChecker gallon = new EqualityChecker(UnitConverter.ConvertUnit.GALLONS, 1);
@@ -252,4 +254,21 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(Math.round(7.57), result, 0.0);
     }
 
+    //**************weight*******************//
+
+    @Test
+    public void given1kgAnd1000gmIfEqual_ShouldReturnTrue() {
+        EqualityChecker kg = new EqualityChecker(UnitConverter.ConvertUnit.KG, 1);
+        EqualityChecker gm = new EqualityChecker(UnitConverter.ConvertUnit.GRAMS, 1000);
+        boolean compareCheck = UnitConverter.ConvertUnit.compare(kg, gm);
+        Assert.assertTrue(compareCheck);
+    }
+
+    @Test
+    public void given1gAnd1kgIfNotEqual_ShouldReturnFalse() {
+        EqualityChecker kg = new EqualityChecker(UnitConverter.ConvertUnit.KG, 1);
+        EqualityChecker gm = new EqualityChecker(UnitConverter.ConvertUnit.GRAMS, 1);
+        boolean compareCheck = UnitConverter.ConvertUnit.compare(kg, gm);
+        Assert.assertFalse(compareCheck);
+    }
 }
