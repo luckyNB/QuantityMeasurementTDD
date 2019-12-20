@@ -20,24 +20,24 @@ public class UnitManipulator {
     }
 
     public static boolean compare(UnitManipulator input1, UnitManipulator input2) throws UnitManipulatorException {
-
         if (input1.unit.typeOfUnits.equals(input2.unit.typeOfUnits)) {
             Double firstValue = Double.valueOf((Math.round(input1.value * input1.unit.baseUnit)));
             Double secondValue = Double.valueOf(Math.round(input2.value * input2.unit.baseUnit));
             return firstValue.equals(secondValue);
         }
-        throw new UnitManipulatorException("invalid unit type", UnitManipulatorException.ExceptionType.WRONG_UNIT_TYPE);
+        throw new UnitManipulatorException("invalid unit type..not compatible to compare", UnitManipulatorException
+                .ExceptionType.WRONG_UNIT_TYPE);
 
     }
 
-
-    public static double addition(UnitManipulator input1, UnitManipulator input2) {
+    public static double addition(UnitManipulator input1, UnitManipulator input2) throws UnitManipulatorException {
         if (input1.unit.typeOfUnits.equals(input2.unit.typeOfUnits) && input1.unit.typeOfUnits != TypeOfUnits.TEMPERATURE)  {
             Double firstValue = input1.value*input1.unit.baseUnit;
             Double secondValue = input2.value*input2.unit.baseUnit;
             return Math.round(firstValue+secondValue);
         }
-        return 0;
+        throw new UnitManipulatorException("invalid unit type..cannot add temperatures", UnitManipulatorException
+                .ExceptionType.WRONG_UNIT_TYPE);
     }
 
     public Boolean compareTemperatures(UnitManipulator that) {
